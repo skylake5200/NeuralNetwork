@@ -12,10 +12,9 @@ using namespace std;
 	type fstream  文件读写操作，对打开的文件可以进行读写操作，同时具有ofstream和instream两种功能
 **/
 
-// 这里的N是合格的零件数
+// 对异或问题产生数据,文件中保存x y 坐标
 void result_to_file(float (*data)[2], int N, const char* path = "./result.txt"){
 
-	
 	ofstream outfile;
 	outfile.open(path);
 	for (int i = 0; i < N; i++){
@@ -30,8 +29,8 @@ void result_to_file(float (*data)[2], int N, const char* path = "./result.txt"){
 // 参数包括生成数据对个数N，精度的要求precision, 文件路径path
 void cte_data(int N = 100, int precision = 2, const char* path = "./cpt_data.txt"){
 
-	// 零件的体积v(0, 3) 以及质量m(0, 1) 作为衡量一个零件是否合格的标准
-	// 文件中生成两列数据，第一列表示零件的体积，第二列表示零件的质量	
+	// xy的取值区间为(0, 10)
+	// 文件中生成两列数据，第一列表示位置坐标x，第二列表示位置坐标y	
 	ofstream outfile;
 	outfile.open(path);
 	// rand随机数每次执行时都是相同的，若要不同，需要动态更改seed
@@ -41,8 +40,7 @@ void cte_data(int N = 100, int precision = 2, const char* path = "./cpt_data.txt
 	// 结果保留两位小数
 	for (int i = 1; i <= N; i ++){
 		// 怎么会出现负数？ - 3 * rand()之后。超出了四个字节的最大长度，所以用负数来表示了
-		// cout << "rand(" << i << ") = " << 3 * (rand() / (double) RAND_MAX) << endl;
-		outfile << fixed << setprecision(precision) << 0 + 3 * (rand() / (double) RAND_MAX) << " " << rand() / (double) RAND_MAX << endl;
+		outfile << fixed << setprecision(precision) << 0 + 10 * (rand() / (double) RAND_MAX) << " " << 0 + 10 * (rand() / (double) RAND_MAX) << endl;
 	}
 	
 	outfile.close();
