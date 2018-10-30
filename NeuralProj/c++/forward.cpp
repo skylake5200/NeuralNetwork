@@ -4,6 +4,7 @@
 using namespace std;
 
 int main(){
+
 	// N为数据对个数
 	int N = 100;
 	float data[N][2]; // 保存数据信息 体积v - 质量m
