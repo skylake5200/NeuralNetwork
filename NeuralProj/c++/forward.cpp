@@ -53,18 +53,11 @@ int main(){
 	cout << "正确答案：\n" ;
 	print (&y_[0][0], N, 2);		
 
+	float *A, *y;
+	A = matmul(data[0], *W1, 2, 3);
+	y = matmul(A, *W2, 3, 2);
+
 	
-	// matmul(data[]);
-	/**
-	float *arr_smax;
-	// 临时数组
-	float arrtemp[N][2];		
-	for (int k = 0; k < N; k++){
-  		
-		arr_smax = softmax(data[k], N);
-		cout << "概率分布" << " " << arr_smax[0] << " " << arr_smax[1] << " " << endl;
-		
-	}
-	**/
+	cout << y[0] << " " << y[1] << endl;
 	return 0;
 }
