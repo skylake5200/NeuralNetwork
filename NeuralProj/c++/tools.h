@@ -4,6 +4,7 @@
 # include "stdlib.h"
 # include "math.h"
 # include "unistd.h"
+# include "activef.h"
 using namespace std;
 // 函数声明
 float _01_rand();
@@ -15,7 +16,7 @@ float *matmul (float *InPut, float *W, int row, int column);
 
 // 打印数组
 void print (float *arr, int row, int column) {
-
+	printf("[\n");
 	 for (int i = 0; i < row; i++) {
 
                 for (int j = 0; j < column; j++) {
@@ -23,8 +24,8 @@ void print (float *arr, int row, int column) {
                         cout << *(arr + column * i + j) << " ";
                 }
 		cout << endl;
-        } 
-
+        }
+	printf("]\n");
 }
 // 初始化权重,数组是顺序存储的，二维数组也是
 void init_W (float *W, int row, int column) {
@@ -70,7 +71,8 @@ float *matmul (float *InPut, float *W, int row, int column) {
 			sum += *(W + column * j) * InPut[j];
 
 		}
-		arr[i] = sum;
+		// 将输出结果经过激活函数
+		arr[i] = sigmoid(sum);
 	}
 	return arr;
 }
@@ -86,7 +88,7 @@ float _01_rand() {
 	// N可以确定产生的精度，比如需要两位小数，N = 99，三位小数 N = 999
 	int N = 99;
 	// 初始化rand()的起始值(程序调用速度过快的时候，产生的随机数是一样的)
-	// srand((unsigned) time(NULL));
+	// srand(time(NULL));
 	return rand() % (N + 1) / (float) (N + 1);
 }
 
