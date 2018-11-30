@@ -36,7 +36,7 @@ plt.scatter(X[: , 0], X[:, 1], c = np.squeeze(Y_c))
 plt.show()
 
 
-# 定义神经网络的输入、参数和暑促，定义前向传播的过程
+# 定义神经网络的输入、参数和输出，定义前向传播的过程
 
 def get_weight(shape, regularizer):
 

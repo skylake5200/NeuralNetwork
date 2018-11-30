@@ -3,17 +3,17 @@
 using namespace std;
 
 // 激活函数
-double ReLU(double x) {
+float ReLU(float x) {
 	  
 	return x > 0 ? x : 0;
 }
 
-double sigmoid(double x) {
+float sigmoid(float x) {
 	
 	return 1 / (1 + exp(-x));
 }
 
-double tanh(double x) {
+float tanh(float x) {
 
 	return (1 - (exp(-2 * x))) / (1 + exp(-2 * x));
 }

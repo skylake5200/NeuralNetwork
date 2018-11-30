@@ -1,12 +1,12 @@
 # include "iostream"
 # include "tools.h"
 # include "cte_data.h"
-# include "activef.h"
 # include "stdlib.h"
 # include "unistd.h" //sleep(int second)函数库
 
 # define INPUT_SIZE 2    // 输入节点数
 # define HIDE_SIZE 3     // 隐藏层节点数
+# define HIDE_NUM 1      // 隐藏层数
 # define OUTPUT_SIZE 1   // 输出层节点数
 
 # define LEARNING_RATE 0.01 // 学习率
@@ -28,7 +28,7 @@ int main(){
 	print (&W1[0][0], 2, 3);
 		
 	float W2[3][2];
-	init_W(*W2, 3, 1);
+	init_W(*W2, 3, 2);
 	cout << "初始W2矩阵为：\n";
 	print (&W2[0][0], 3, 2);	
 	
@@ -50,14 +50,32 @@ int main(){
 			y_[i][1] = 0;
 		}
 	}
-	cout << "正确答案：\n" ;
-	print (&y_[0][0], N, 2);		
+			
 
-	float *A, *y;
-	A = matmul(data[0], *W1, 2, 3);
-	y = matmul(A, *W2, 3, 2);
+	// A为中间层输出向量，Y为输出向量
+	float *A, *y, *Y;
 
+	// 最大训练轮数
+	int max_iter = 1;
+	// 训练 Just Do It!
+	for (int iter = 0; iter < max_iter; iter++) {
+			
+		for (int i = 0; i < N; i++) {
+
+			A = matmul(data[0], *W1, 2, 3); // A为隐藏层的输出向量,在此进行保存
+        	        y = matmul(A, *W2, 3, 2); // y为输出层的向量
+	                Y = softmax(y);
+
+			// 更新权重
+			for (int j = 0; j < HIDE_NUM; j++) {
+				
+				
+				
+
+			}
+
+		}	
+	}
 	
-	cout << y[0] << " " << y[1] << endl;
 	return 0;
 }

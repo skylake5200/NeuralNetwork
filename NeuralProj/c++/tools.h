@@ -4,11 +4,13 @@
 # include "stdlib.h"
 # include "math.h"
 # include "unistd.h"
+# include "activef.h"
 using namespace std;
 // 函数声明
 float _01_rand();
-void print (float *arr, int row, int column);
-void init_W (float *W, int row, int column);
+float _101_rand();
+void  print (float *arr, int row, int column);
+void  init_W (float *W, int row, int column);
 float *matmul (float *InPut, float *W, int row, int column);
 
 
@@ -33,7 +35,7 @@ void init_W (float *W, int row, int column) {
 
 		for (int j = 0; j < column; j++) {
 
-			*(W + column * i + j) = _01_rand();
+			*(W + column * i + j) = _101_rand();
 		}
 	} 
 }
@@ -70,7 +72,8 @@ float *matmul (float *InPut, float *W, int row, int column) {
 			sum += *(W + column * j) * InPut[j];
 
 		}
-		arr[i] = sum;
+		// 经过非线性激活函数
+		arr[i] = sigmoid(sum);
 	}
 	return arr;
 }
@@ -89,6 +92,13 @@ float _01_rand() {
 	// srand((unsigned) time(NULL));
 	return rand() % (N + 1) / (float) (N + 1);
 }
+
+
+float _101_rand() {
+
+        return 2.0 * rand() / RAND_MAX - 1.0;
+}
+
 
 float* softmax (float *arr_y, int N = 100) {
 	
